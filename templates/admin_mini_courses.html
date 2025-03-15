@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Админ-панель – Мини-курсы{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('admin_logout') }}" class="btn btn-danger float-end">Выйти</a>
+<a href="{{ url_for('admin') }}" class="btn btn-success mb-3">Перейти к админке Учеников</a>
+<a href="{{ url_for('add_mini_course') }}" class="btn btn-success mb-3">Добавить мини-курс</a>
+
+<h2>Мини-курсы</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    {% for course in courses %}
+    <tr>
+        <td>{{ course.title }}</td>
+        <td>
+            <a href="{{ url_for('admin_mini_lessons', id=course.id) }}" class="btn btn-info">Уроки</a>
+            <a href="{{ url_for('edit_mini_course', id=course.id) }}" class="btn btn-warning">Редактировать</a>
+            <form method="post" action="{{ url_for('delete_mini_course', id=course.id) }}" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Админ - TechnoSchool{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('admin_logout') }}" class="btn btn-danger float-end">Выйти</a>
+<a href="{{ url_for('admin_mini_courses') }}" class="btn btn-success mb-3">Перейти к админке Мини-курсов</a>
+<a href="{{ url_for('add_student') }}" class="btn btn-success mb-3">Добавить ученика</a>
+
+<h2>Список учеников</h2>
+
+<!-- Форма поиска -->
+<form method="get" action="{{ url_for('admin') }}" class="mb-3">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="text" name="query" class="form-control" placeholder="Поиск по ФИО" value="{{ query }}">
+        </div>
+        <div class="col-md-3">
+            <input type="number" step="0.5" name="max_balance" class="form-control" placeholder="Макс. баланс часов" value="{{ max_balance }}">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+            <a href="{{ url_for('admin') }}" class="btn btn-secondary">Сброс</a>
+        </div>
+    </div>
+</form>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<table class="table table-striped">
+    <tr>
+        <th>ФИО</th>
+        <th>Баланс часов</th>
+        <th>Действия</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.last_name }} {{ student.first_name }} {{ student.middle_name }}</td>
+        <td>{{ student.balance_hours }}</td>
+        <td>
+            <a href="{{ url_for('edit_student', id=student.id) }}" class="btn btn-primary btn-sm">Редактировать</a>
+
+            {% if student.conference_link %}
+            <a href="{{ student.conference_link }}" class="btn btn-info btn-sm" target="_blank">Конференция</a>
+            {% endif %}
+
+            {% if student.telegram_login %}
+            <a href="https://t.me/{{ student.telegram_login }}" class="btn btn-success btn-sm" target="_blank">Telegram</a>
+            {% endif %}
+
+            <a href="https://web.telegram.org/#{{ student.id }}" class="btn btn-secondary btn-sm" target="_blank">Web Telegram</a>
+
+            <!-- Кнопка копирования ссылки ученика -->
+            <button class="btn btn-outline-dark btn-sm" onclick="copyToClipboard('http://127.0.0.1:5000/student/{{ student.id }}')" title="Скопировать ссылку ученика">
+                <i class="fa-solid fa-user"></i>
+            </button>
+
+            <!-- Кнопка копирования ссылки родителя -->
+            <button class="btn btn-outline-dark btn-sm" onclick="copyToClipboard('http://127.0.0.1:5000/parent/{{ student.id }}')" title="Скопировать ссылку родителя">
+                <i class="fa-solid fa-user-group"></i>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<!-- Скрипт для копирования в буфер -->
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            console.log("Ссылка скопирована: " + text);
+        }).catch(err => {
+            console.error("Ошибка копирования: ", err);
+        });
+    }
+</script>
+
+
+{% endblock %}

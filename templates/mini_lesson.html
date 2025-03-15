@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block content %}
+<head>
+    <style>
+        .mini-lesson-video-container {
+            width: 100%;
+            padding-top: 56.25%;
+            height: 0px;
+            position: relative;
+        }
+
+        .mini-lesson-video {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<div class="p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 fw-normal text-body-emphasis">{{ course.title }}</h1>
+  <p class="fs-5 text-body-secondary">{{ lesson.title }}</p>
+</div>
+
+<div class="mini-lesson-video-container">
+    <video class="mini-lesson-video border rounded" controls>
+        <source src="{{ lesson.video_url }}" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+</div>
+
+<p>{{ lesson.description }}</p>
+
+{% if prev_lesson %}
+<a href="{{ url_for('mini_lesson', id=prev_lesson) }}" class="btn btn-secondary mb-1">« Предыдущий урок</a>
+{% endif %}
+
+{% if next_lesson %}
+<a href="{{ url_for('mini_lesson', id=next_lesson) }}" class="btn btn-secondary mb-1">Следующий урок »</a>
+{% endif %}
+
+<br>
+
+<a href="{{ url_for('mini_course', id=course.id) }}" class="btn btn-outline-dark mt-3">Назад</a>
+{% endblock %}

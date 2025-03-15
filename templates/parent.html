@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Родительская страница{% endblock %}
+
+{% block content %}
+<h2>{{ student.last_name }} {{ student.first_name }} {{ student.middle_name }}</h2>
+<h3>Оставшиеся часы: {{ student.balance_hours }}</h3>
+
+<h3>Занятия</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Длительность</th>
+        <th>Статус</th>
+        <th>Комментарий</th>
+    </tr>
+    {% for lesson in student.lessons %}
+    <tr>
+        <td>{{ lesson.duration_hours }} ч.</td>
+        <td class="{% if lesson.completed %}bg-success{% else %}bg-secondary{% endif %} text-white">
+            {% if lesson.completed %}Проведено{% else %}Ожидается{% endif %}
+        </td>
+        <td>{{ lesson.comment or 'Нет комментария' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

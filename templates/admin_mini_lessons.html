@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Админ – Уроки курса{% endblock %}
+
+{% block content %}
+<h2>Уроки курса: {{ course.title }}</h2>
+<a href="{{ url_for('add_mini_lesson', course_id=course.id) }}" class="btn btn-success mb-3">Добавить мини-урок</a>
+
+<table class="table table-striped">
+    <tr>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    {% for lesson in lessons %}
+    <tr>
+        <td>{{ lesson.title }}</td>
+        <td>
+            <a href="{{ url_for('edit_mini_lesson', id=lesson.id) }}" class="btn btn-warning">Редактировать</a>
+            <form method="post" action="{{ url_for('delete_mini_lesson', id=lesson.id) }}" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('admin_mini_courses') }}" class="btn btn-outline-dark mt-3">Назад</a>
+{% endblock %}

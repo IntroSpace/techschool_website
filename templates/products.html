@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты - TechnoSchool{% endblock %}
+
+{% block content %}
+<div class="container pb-3">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-3 fw-normal text-body-emphasis">Тарифы</h1>
+      <p class="fs-4 text-body-secondary">Теперь занятия оплачиваются по тарифам: чем больше занятий покупаете - тем меньше цена за каждое занятие</p>
+      <h4 class="fw-bold text-body-emphasis">Для выбора какого-либо тарифа, необходимо написать в сообщении: Вид занятий (индивидуальные или групповые), Название интересующего курса, Выбранный тариф (из предложенных ниже). <br>Куда написать сообщение вы можете найти в <a target="_blank" href="{{ url_for('contacts') }}">Контактах</a></h4>
+    </div>
+  </header>
+
+  <main class="border p-1">
+    <div class="p-3 pb-md-4 mx-auto text-center">
+      <h3 class="display-6 fw-normal text-body-emphasis">Индивидуальные занятия</h3>
+      <p class="fs-6 text-body-secondary">Онлайн-занятия с индивидуальным подходом к каждому ученику, подробным разбором каждой темы, а также много-много практики. Проходим курсы, которые особенно востребованны сейчас: Основы программирования на Python или C++, Продвинутое программирование на Python (следующий уровень)</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">1 занятие</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">1700 рублей</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Оплата каждого занятия по-одному</li>
+              <li>Индивидуальный план занятий</li>
+              <li>Подробная теория и много практики</li>
+              <li>Домашние задания и их разбор</li>
+              <li>Цена: <span class="fw-bold">1700 рублей</span> за занятие</li>
+            </ul>
+<!--            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Начать занятия</button>-->
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">5 занятий</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="fw-normal"><del>8500</del></small> 7500 рублей</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Оплата 5 занятий наперёд</li>
+              <li>Индивидуальный план занятий</li>
+              <li>Подробная теория и много практики</li>
+              <li>Домашние задания и их разбор</li>
+              <li>Цена: <span class="fw-bold">1500 рублей</span> за занятие</li>
+              <li>Скидка: <span class="fw-bold">-11%</span></li>
+            </ul>
+<!--            <button type="button" class="w-100 btn btn-lg btn-primary">Начать занятия</button>-->
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">10 занятий</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="fw-normal"><del>17000</del></small> 13000 рублей</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Оплата 10 занятий наперёд</li>
+              <li>Индивидуальный план занятий</li>
+              <li>Подробная теория и много практики</li>
+              <li>Домашние задания и их разбор</li>
+              <li>Цена: <span class="fw-bold">1300 рублей</span> за занятие</li>
+              <li>Скидка: <span class="fw-bold">-23%</span></li>
+            </ul>
+<!--            <button type="button" class="w-100 btn btn-lg btn-primary">Начать занятия</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3 pb-md-4 mx-auto text-center">
+      <h4 class="display-6 fw-normal text-body-emphasis">Групповые занятия</h4>
+      <p class="fs-6 text-body-secondary">Онлайн-занятия в группах до 4 человек: коммуникация между учениками, опыт решения задач в команде, подробный разбор каждой теме, а также обсуждение каждого занятия в группе, что помогает лучше закрепить материал. Групповые занятия ведутся только по теме: Основы программирования на Python</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">1 занятие</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="fw-normal"><del>1700</del></small> 1300 рублей</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Работа в группе</li>
+              <li>Подробный разбор теории</li>
+              <li>Домашние задания и их обсуждение в группе</li>
+              <li>Цена: <span class="fw-bold">1300 рублей</span> за занятие</li>
+              <li>Скидка: <span class="fw-bold">-23%</span></li>
+            </ul>
+<!--            <button type="button" class="w-100 btn btn-lg btn-primary">Начать занятия</button>-->
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">5 занятий</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="fw-normal"><del>1700</del></small> 1000 рублей</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Работа в группе</li>
+              <li>Подробный разбор теории</li>
+              <li>Домашние задания и их обсуждение в группе</li>
+              <li>Цена: <span class="fw-bold">1000 рублей</span> за занятие</li>
+              <li>Скидка: <span class="fw-bold">-41%</span></li>
+            </ul>
+<!--            <button type="button" class="w-100 btn btn-lg btn-primary">Начать занятия</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать урок{% endblock %}
+
+{% block content %}
+<h2>Редактирование урока</h2>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Длительность (часы)</label>
+        <input type="number" step="0.5" name="duration" class="form-control" value="{{ lesson.duration_hours }}" required>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="completed" class="form-check-input" {% if lesson.completed %}checked{% endif %}>
+        <label class="form-check-label">Занятие проведено</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Комментарий</label>
+        <textarea name="comment" class="form-control">{{ lesson.comment }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="{{ url_for('edit_student', id=lesson.student_id) }}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

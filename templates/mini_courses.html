@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Мини-курсы{% endblock %}
+
+{% block content %}
+<div class="p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-3 fw-normal text-body-emphasis">Мини-курсы</h1>
+  <p class="fs-4 text-body-secondary">Здесь собраны курсы на разные темы, в которых вы можете разобраться с помощью записанных видео-уроков</p>
+</div>
+<div class="row">
+    {% for course in courses %}
+    <div class="col-md-4">
+        <div class="card mb-1">
+            <img src="{{ course.image_url }}" class="card-img-top" alt="{{ course.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="card-text">
+                    {% if course.price %}
+                    Цена: {{ course.price }} ₽
+                    {% else %}
+                    Бесплатно
+                    {% endif %}
+                </p>
+                <a href="{{ url_for('mini_course', id=course.id) }}" class="btn btn-primary">Перейти к курсу</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">{{ course.title }}</h1>
+    <p class="fs-5 text-body-secondary">{{ course.description }}</p>
+    <p class="fs-5 text-body-secondary"><strong>Цена:</strong> {% if course.price %}{{ course.price }} ₽{% else %}Бесплатно{% endif %}</p>
+</div>
+
+{% if not access_granted and course.password %}
+<form method="post">
+    <label>Введите пароль для доступа:</label>
+    <input type="password" name="password" required>
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+{% if error %}
+<p class="text-danger">{{ error }}</p>
+{% endif %}
+{% else %}
+<h3>Уроки</h3>
+<div class="row">
+    {% for lesson in lessons %}
+    <div class="col-md-4">
+        <div class="card mb-1">
+            <div class="card-body">
+                <h5 class="card-title">{{ lesson.title }}</h5>
+                <p class="card-text">{{ lesson.description }}</p>
+                <a href="{{ url_for('mini_lesson', id=lesson.id) }}" class="btn btn-secondary">Смотреть</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<a href="{{ url_for('mini_courses') }}" class="btn btn-outline-dark mt-3">Назад</a>
+{% endblock %}
