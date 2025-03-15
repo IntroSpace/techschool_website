@@ -5,8 +5,10 @@ import string
 import os
 from config import ADMIN_PASSWORD, WEB_SECRET_KEY
 
-file_path = os.path.abspath(os.getcwd()) + "/data/database.db"
+# file_path = os.path.abspath(os.getcwd()) + "/data/database.db"
+file_path = "/data/database.db"
 
+print('sqlite:///'+file_path)
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
